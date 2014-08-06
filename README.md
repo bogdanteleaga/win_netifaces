@@ -9,7 +9,7 @@ Uses go-ole to query WMI.
 =============
 
 Example usage:
-
+```go
 package main
 
 import (
@@ -29,3 +29,4 @@ func main() {
                 fmt.Println("\n")
         }
 }
+```
