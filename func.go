@@ -1,6 +1,9 @@
 package win_netifaces
 
-import "net"
+import (
+	"net"
+	"regexp"
+)
 
 type InterfaceType int
 
@@ -108,8 +111,8 @@ func getIPAddressFromIndex(idx uint32) (addrs []string, mtu int, err error) {
 	}
 }
 
-func isValidMACAddress(addr string) (bool) {
-    var validMAC = regexp.MustCompile("^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$")
+func isValidMACAddress(addr string) bool {
+	var validMAC = regexp.MustCompile("^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$")
 
-    return validMAC.MatchString(addr)
+	return validMAC.MatchString(addr)
 }
