@@ -37,7 +37,7 @@ func GetAdapters(ifType InterfaceType) (ifs []NetworkAdapter, err error) {
 	result := make([]NetworkAdapter, 0, len(adapters))
 
 	for _, adapter := range adapters {
-		if adapter.MACAddress == "" {
+		if !isValidMACAddress(adapter.MACAddress) {
 			continue
 		}
 		for _, config := range configs {
@@ -106,4 +106,10 @@ func getIPAddressFromIndex(idx uint32) (addrs []string, mtu int, err error) {
 		}
 		return res, iface.MTU, nil
 	}
+}
+
+func isValidMACAddress(addr string) (bool) {
+    var validMAC = regexp.MustCompile("^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$")
+
+    return validMAC.MatchString(addr)
 }
