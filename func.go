@@ -3,6 +3,7 @@ package win_netifaces
 import (
 	"net"
 	"regexp"
+	"strings"
 )
 
 type InterfaceType int
@@ -49,9 +50,9 @@ func GetAdapters(ifType InterfaceType) (ifs []NetworkAdapter, err error) {
 				res := NetworkAdapter{}
 
 				//Check the interface type and see if it matches
-				if ifType == Physical && adapter.PhysicalAdapter {
+				if ifType == Physical && adapter.Manufacturer != "Windows" && !strings.HasPrefix(adapter.PNPDeviceID, "ROOT") {
 					res.Type = Physical
-				} else if ifType == Virtual && !adapter.PhysicalAdapter {
+				} else if ifType == Virtual && strings.HasPrefix(adapter.PNPDeviceID, "ROOT") {
 					res.Type = Virtual
 				} else {
 					break

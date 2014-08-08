@@ -148,6 +148,8 @@ func parseAdapters(adapters []Win32_NetworkAdapter, result *ole.IDispatch, count
 
 		adapters[i].MACAddress = oleutil.MustGetProperty(item, "MACAddress").ToString()
 
+		adapters[i].Manufacturer = oleutil.MustGetProperty(item, "Manufacturer").ToString()
+
 		adapters[i].Name = oleutil.MustGetProperty(item, "Name").ToString()
 
 		net_conn_status := oleutil.MustGetProperty(item, "NetConnectionStatus").Value()
@@ -171,6 +173,7 @@ func parseAdapters(adapters []Win32_NetworkAdapter, result *ole.IDispatch, count
 			adapters[i].PhysicalAdapter = false
 		}
 
+		adapters[i].PNPDeviceID = oleutil.MustGetProperty(item, "PNPDeviceID").ToString()
 	}
 	return nil
 }

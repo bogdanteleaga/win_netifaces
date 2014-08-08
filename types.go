@@ -24,8 +24,8 @@ type Win32_NetworkAdapter struct {
 	//Installed                   bool
 	InterfaceIndex uint32
 	//LastErrorCode               uint32
-	MACAddress string
-	//Manufacturer                string
+	MACAddress   string
+	Manufacturer string
 	//MaxNumberControlled         uint32
 	//MaxSpeed                    uint64
 	Name string
@@ -35,7 +35,7 @@ type Win32_NetworkAdapter struct {
 	//NetworkAddresses    []string
 	PermanentAddress string
 	PhysicalAdapter  bool
-	//PNPDeviceID                 string
+	PNPDeviceID      string
 	//PowerManagementCapabilities []uint16
 	//PowerManagementSupported    bool
 	//ProductName                 string
